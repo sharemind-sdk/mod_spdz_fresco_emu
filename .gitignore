@@ -1,0 +1,5 @@
+/config.local
+/CMakeLists.txt.user*
+/b/
+/build/
+/qtcreator-build/
