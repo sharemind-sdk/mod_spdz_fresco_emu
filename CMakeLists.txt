@@ -39,6 +39,7 @@ FIND_PACKAGE(SharemindLibEmulatorProtocols REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionModelEvaluator REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionProfiler REQUIRED)
 FIND_PACKAGE(SharemindLibmodapi REQUIRED)
+FIND_PACKAGE(SharemindPdkHeaders REQUIRED)
 INCLUDE_DIRECTORIES(
     ${Boost_INCLUDE_DIRS}
     ${LogHard_INCLUDE_DIRS}
@@ -48,6 +49,7 @@ INCLUDE_DIRECTORIES(
     ${SharemindLibExecutionModelEvaluator_INCLUDE_DIRS}
     ${SharemindLibExecutionProfiler_INCLUDE_DIRS}
     ${SharemindLibmodapi_INCLUDE_DIRS}
+    ${SharemindPdkHeaders_INCLUDE_DIRS}
 )
 
 ADD_DEFINITIONS(
@@ -58,6 +60,7 @@ ADD_DEFINITIONS(
     ${SharemindLibExecutionModelEvaluator_DEFINITIONS}
     ${SharemindLibExecutionProfiler_DEFINITIONS}
     ${SharemindLibmodapi_DEFINITIONS}
+    ${SharemindPdkHeaders_DEFINITIONS}
     "-Dexprtk_disable_comments"
     "-Dexprtk_disable_break_continue"
     "-Dexprtk_disable_enhanced_features"
@@ -86,6 +89,7 @@ SET(SPDZ_FRESCO_EMU_HEADERS
     "src/Syscalls/Common.h"
     "src/Syscalls/CoreSyscalls.h"
     "src/Syscalls/Meta.h"
+    "src/ValueTraits.h"
 )
 
 ADD_LIBRARY(sharemind_mod_spdz_fresco_emu MODULE ${SPDZ_FRESCO_EMU_SOURCES} ${SPDZ_FRESCO_EMU_HEADERS})
@@ -96,6 +100,7 @@ TARGET_LINK_LIBRARIES(sharemind_mod_spdz_fresco_emu
     ${SharemindCxxHeaders_LIBRARIES}
     ${SharemindLibExecutionModelEvaluator_LIBRARIES}
     ${SharemindLibExecutionProfiler_LIBRARIES}
+    ${SharemindPdkHeaders_LIBRARIES}
 )
 
 INSTALL(TARGETS sharemind_mod_spdz_fresco_emu LIBRARY DESTINATION "lib")

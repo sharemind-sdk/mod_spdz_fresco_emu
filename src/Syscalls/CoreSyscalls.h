@@ -21,8 +21,8 @@
 #define MOD_SPDZ_FRESCO_EMU_SYSCALLS_CORESYSCALLS_H
 
 #include <sharemind/libmodapi/api_0x1.h>
-#include <sharemind/libemulator_protocols/ShareVector.h>
-#include <sharemind/libemulator_protocols/VmVector.h>
+#include <sharemind/ShareVector.h>
+#include <sharemind/VmVector.h>
 #include "Common.h"
 #include "../SpdzFrescoPDPI.h"
 #include "../ValueTraits.h"
@@ -63,7 +63,7 @@ NAMED_SYSCALL(new_vec, name, args, num_args, refs, crefs, returnValue, c)
         SpdzFrescoPDPI * const pdpi = static_cast<SpdzFrescoPDPI*>(handles.pdpiHandle);
         const size_t vsize = args[1u].uint64[0u];
 
-        share_vec<T> * const vec = new share_vec<T>(vsize);
+        ShareVec<T> * const vec = new ShareVec<T>(vsize);
         pdpi->registerVector(vec);
 
         returnValue->p[0u] = vec;
@@ -103,7 +103,7 @@ NAMED_SYSCALL(init_vec, name, args, num_args, refs, crefs, returnValue, c)
         if (!pdpi->isValidHandle<T>(args[2u].p[0u]))
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
 
-        share_vec<T> & vec = *static_cast<share_vec<T>*>(args[2u].p[0u]);
+        ShareVec<T> & vec = *static_cast<ShareVec<T>*>(args[2u].p[0u]);
         const typename T::public_type init = getStack<T>(args[1u]);
         for (size_t i = 0u; i < vec.size(); ++i)
             vec[i] = init;
@@ -144,7 +144,7 @@ NAMED_SYSCALL(set_shares, name, args, num_args, refs, crefs, returnValue, c)
     try {
         SpdzFrescoPDPI * const pdpi = static_cast<SpdzFrescoPDPI*>(handles.pdpiHandle);
 
-        typedef typename value_traits<T>::share_type share_type;
+        typedef typename ValueTraits<T>::share_type share_type;
         const share_type* src = static_cast<const share_type*>(crefs[0u].pData);
         /** \todo the following is a workaround! We are always allocating
              one byte too much (for arrays) as VM does not allow us to allocate
@@ -155,7 +155,7 @@ NAMED_SYSCALL(set_shares, name, args, num_args, refs, crefs, returnValue, c)
             if (!pdpi->isValidHandle<T>(args[1u].p[0u]))
                 return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
 
-            share_vec<T> & dest = *static_cast<share_vec<T>*>(args[1u].p[0u]);
+            ShareVec<T> & dest = *static_cast<ShareVec<T>*>(args[1u].p[0u]);
             if (dest.size() != num_elems)
                 return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
 
@@ -204,8 +204,8 @@ NAMED_SYSCALL(get_shares, name, args, num_args, refs, crefs, returnValue, c)
         if (!pdpi->isValidHandle<T>(args[1u].p[0u]))
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
 
-        typedef typename value_traits<T>::share_type share_type;
-        const share_vec<T> & src = *static_cast<const share_vec<T>*>(args[1u].p[0u]);
+        typedef typename ValueTraits<T>::share_type share_type;
+        const ShareVec<T> & src = *static_cast<const ShareVec<T>*>(args[1u].p[0u]);
         const size_t num_bytes = src.size() * sizeof(share_type);
 
         if (refs) {
@@ -260,7 +260,7 @@ NAMED_SYSCALL(get_type_size, name, args, num_args, refs, crefs, returnValue, c)
     try {
         SpdzFrescoPDPI * const pdpi = static_cast<SpdzFrescoPDPI*>(handles.pdpiHandle);
 
-        typedef typename value_traits<T>::share_type share_type;
+        typedef typename ValueTraits<T>::share_type share_type;
         returnValue->uint64[0u] = sizeof(share_type);
 
         PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name, 0u);
@@ -302,8 +302,8 @@ NAMED_SYSCALL(fill_vec, name, args, num_args, refs, crefs, returnValue, c)
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
 
-        share_vec<T> & dest = *static_cast<share_vec<T>*>(destHandle);
-        const share_vec<T> & src = *static_cast<share_vec<T>*>(srcHandle);
+        ShareVec<T> & dest = *static_cast<ShareVec<T>*>(destHandle);
+        const ShareVec<T> & src = *static_cast<ShareVec<T>*>(srcHandle);
 
         for (size_t i = 0; i < dest.size(); ++i)
             dest[i] = src[0u];
@@ -351,8 +351,8 @@ NAMED_SYSCALL(assign_vec, name, args, num_args, refs, crefs, returnValue, c)
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
 
-        const share_vec<T> & src = *static_cast<share_vec<T>*>(srcHandle);
-        share_vec<T> & dest = *static_cast<share_vec<T>*>(destHandle);
+        const ShareVec<T> & src = *static_cast<ShareVec<T>*>(srcHandle);
+        ShareVec<T> & dest = *static_cast<ShareVec<T>*>(destHandle);
 
         if (src.size() != dest.size())
             return SHAREMIND_MODULE_API_0x1_INVALID_CALL;
@@ -392,14 +392,14 @@ NAMED_SYSCALL(declassify_vec, name, args, num_args, refs, crefs, returnValue, c)
 
     try {
         SpdzFrescoPDPI * const pdpi = static_cast<SpdzFrescoPDPI*>(handles.pdpiHandle);
-        mutable_vm_vec<T> dest(refs[0u]);
+        MutableVmVec<T> dest(refs[0u]);
 
         void * const srcHandle = args[1u].p[0u];
         if (!pdpi->isValidHandle<T>(srcHandle)) {
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
 
-        const share_vec<T> & src = *static_cast<share_vec<T>*>(srcHandle);
+        const ShareVec<T> & src = *static_cast<ShareVec<T>*>(srcHandle);
         if (refs[0u].size < sizeof(T) * src.size()) {
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
@@ -446,8 +446,8 @@ NAMED_SYSCALL(classify_vec, name, args, num_args, refs, crefs, returnValue, c)
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
 
-        share_vec<T> & dest = *static_cast<share_vec<T>*>(destHandle);
-        immutable_vm_vec<T> src(crefs[0u]);
+        ShareVec<T> & dest = *static_cast<ShareVec<T>*>(destHandle);
+        ImmutableVmVec<T> src(crefs[0u]);
         if (sizeof(T) * dest.size() > crefs[0u].size) {
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
@@ -493,7 +493,7 @@ NAMED_SYSCALL(delete_vec, name, args, num_args, refs, crefs, returnValue, c)
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
 
-        share_vec<T> * vec = static_cast<share_vec<T>*>(vecHandle);
+        ShareVec<T> * vec = static_cast<ShareVec<T>*>(vecHandle);
         const size_t vsize = vec->size();
         pdpi->freeRegisteredVector(vec);
 
@@ -542,8 +542,8 @@ NAMED_SYSCALL(load_vec, name, args, num_args, refs, crefs, returnValue, c)
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
 
-        const share_vec<T> & src = *static_cast<share_vec<T>*>(srcHandle);
-        share_vec<T> & dest = *static_cast<share_vec<T>*>(destHandle);
+        const ShareVec<T> & src = *static_cast<ShareVec<T>*>(srcHandle);
+        ShareVec<T> & dest = *static_cast<ShareVec<T>*>(destHandle);
 
         if (dest.empty() || !(index < src.size())) {
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
@@ -596,8 +596,8 @@ NAMED_SYSCALL(store_vec, name, args, num_args, refs, crefs, returnValue, c)
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;
         }
 
-        const share_vec<T> & src = *static_cast<share_vec<T>*>(srcHandle);
-        share_vec<T> & dest = *static_cast<share_vec<T>*>(destHandle);
+        const ShareVec<T> & src = *static_cast<ShareVec<T>*>(srcHandle);
+        ShareVec<T> & dest = *static_cast<ShareVec<T>*>(destHandle);
 
         if (src.empty() || !(index < dest.size())) {
             return SHAREMIND_MODULE_API_0x1_GENERAL_ERROR;

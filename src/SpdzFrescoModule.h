@@ -21,6 +21,7 @@
 #define MOD_SPDZ_FRESCO_EMU_SHARED3PMODULE_H
 
 #include <memory>
+#include <sharemind/visibility.h>
 
 
 namespace LogHard { class Logger; }
@@ -29,7 +30,7 @@ namespace sharemind {
 
 class ExecutionProfiler;
 
-class __attribute__ ((visibility("internal"))) SpdzFrescoModule {
+class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoModule {
 
 public: /* Methods: */
 

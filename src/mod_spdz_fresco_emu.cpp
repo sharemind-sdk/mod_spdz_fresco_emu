@@ -26,6 +26,7 @@
 #include <sharemind/libemulator_protocols/Ternary.h>
 #include <sharemind/libemulator_protocols/Unary.h>
 #include <sharemind/libmodapi/api_0x1.h>
+#include <sharemind/visibility.h>
 #include "SpdzFrescoModule.h"
 #include "SpdzFrescoPDPI.h"
 #include "Syscalls/Common.h"
@@ -73,7 +74,7 @@ SHAREMIND_MODULE_API_MODULE_INFO("spdz_fresco",
                                  0x00010000,   /* Version 0.1.0.0 */
                                  0x1);         /* Support API version 1. */
 
-SHAREMIND_MODULE_API_0x1_INITIALIZER(c) __attribute__ ((visibility("default")));
+SHAREMIND_MODULE_API_0x1_INITIALIZER(c) SHAREMIND_VISIBILITY_DEFAULT;
 SHAREMIND_MODULE_API_0x1_INITIALIZER(c) {
     assert(c);
 
@@ -106,7 +107,7 @@ SHAREMIND_MODULE_API_0x1_INITIALIZER(c) {
     }
 }
 
-SHAREMIND_MODULE_API_0x1_DEINITIALIZER(c) __attribute__ ((visibility("default")));
+SHAREMIND_MODULE_API_0x1_DEINITIALIZER(c) SHAREMIND_VISIBILITY_DEFAULT;
 SHAREMIND_MODULE_API_0x1_DEINITIALIZER(c) {
     assert(c);
     assert(c->moduleHandle);
@@ -237,7 +238,7 @@ SHAREMIND_MODULE_API_0x1_SYSCALL_DEFINITIONS(
 );
 
 
-SHAREMIND_MODULE_API_0x1_PD_STARTUP(spdz_fresco_emu_startup, w) __attribute__ ((visibility("hidden")));
+SHAREMIND_MODULE_API_0x1_PD_STARTUP(spdz_fresco_emu_startup, w) SHAREMIND_VISIBILITY_HIDDEN;
 SHAREMIND_MODULE_API_0x1_PD_STARTUP(spdz_fresco_emu_startup, w) {
     assert(w);
     assert(w->moduleHandle);
@@ -262,7 +263,7 @@ SHAREMIND_MODULE_API_0x1_PD_STARTUP(spdz_fresco_emu_startup, w) {
     }
 }
 
-SHAREMIND_MODULE_API_0x1_PD_SHUTDOWN(spdz_fresco_emu_shutdown, w) __attribute__ ((visibility("hidden")));
+SHAREMIND_MODULE_API_0x1_PD_SHUTDOWN(spdz_fresco_emu_shutdown, w) SHAREMIND_VISIBILITY_HIDDEN;
 SHAREMIND_MODULE_API_0x1_PD_SHUTDOWN(spdz_fresco_emu_shutdown, w) {
     assert(w);
     assert(w->pdHandle);
@@ -276,7 +277,7 @@ SHAREMIND_MODULE_API_0x1_PD_SHUTDOWN(spdz_fresco_emu_shutdown, w) {
     #endif
 }
 
-SHAREMIND_MODULE_API_0x1_PDPI_STARTUP(spdz_fresco_emu_PDPI_startup, w) __attribute__ ((visibility("hidden")));
+SHAREMIND_MODULE_API_0x1_PDPI_STARTUP(spdz_fresco_emu_PDPI_startup, w) SHAREMIND_VISIBILITY_HIDDEN;
 SHAREMIND_MODULE_API_0x1_PDPI_STARTUP(spdz_fresco_emu_PDPI_startup, w) {
     assert(w);
     assert(w->pdHandle);
@@ -291,7 +292,7 @@ SHAREMIND_MODULE_API_0x1_PDPI_STARTUP(spdz_fresco_emu_PDPI_startup, w) {
     }
 }
 
-SHAREMIND_MODULE_API_0x1_PDPI_SHUTDOWN(spdz_fresco_emu_PDPI_shutdown, w) __attribute__ ((visibility("hidden")));
+SHAREMIND_MODULE_API_0x1_PDPI_SHUTDOWN(spdz_fresco_emu_PDPI_shutdown, w) SHAREMIND_VISIBILITY_HIDDEN;
 SHAREMIND_MODULE_API_0x1_PDPI_SHUTDOWN(spdz_fresco_emu_PDPI_shutdown, w) {
     assert(w);
     assert(w->pdHandle);

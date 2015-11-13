@@ -21,13 +21,14 @@
 #define MOD_SPDZ_FRESCO_EMU_SHARED3PCONFIGURATION_H
 
 #include <string>
+#include <sharemind/visibility.h>
 
 
 namespace LogHard { class Logger; }
 
 namespace sharemind {
 
-class __attribute__ ((visibility("internal"))) SpdzFrescoConfiguration {
+class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoConfiguration {
 
 public: /* Methods: */
 

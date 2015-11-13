@@ -22,6 +22,7 @@
 
 #include <memory>
 #include <sharemind/Exception.h>
+#include <sharemind/visibility.h>
 #include "SpdzFrescoConfiguration.h"
 
 
@@ -31,7 +32,7 @@ class ExecutionProfiler;
 class ExecutionModelEvaluator;
 class SpdzFrescoModule;
 
-class __attribute__ ((visibility("internal"))) SpdzFrescoPD {
+class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoPD {
 
 public: /* Types: */
 
