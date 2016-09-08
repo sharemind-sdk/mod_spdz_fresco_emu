@@ -244,15 +244,16 @@ SHAREMIND_MODULE_API_0x1_PD_STARTUP(spdz_fresco_emu_startup, w) {
     assert(w->moduleHandle);
     assert(w->conf);
     assert(w->conf->pd_name);
-    assert(w->conf->pd_conf_string);
 
     sharemind::SpdzFrescoModule * const m =
         static_cast<sharemind::SpdzFrescoModule*>(w->moduleHandle);
 
     try {
         w->pdHandle = new SpdzFrescoPD(w->conf->pd_name,
-                                     w->conf->pd_conf_string,
-                                     *m);
+                                       w->conf->pd_conf_string
+                                       ? w->conf->pd_conf_string
+                                       : "",
+                                       *m);
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (const SpdzFrescoPD::ConfigurationException & e) {
         m->logger().error() << "Error on protection domain '"
