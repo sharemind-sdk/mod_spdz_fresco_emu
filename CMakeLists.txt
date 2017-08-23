@@ -38,7 +38,7 @@ FIND_PACKAGE(SharemindCxxHeaders REQUIRED)
 FIND_PACKAGE(SharemindLibEmulatorProtocols REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionModelEvaluator REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionProfiler REQUIRED)
-FIND_PACKAGE(SharemindLibmodapi REQUIRED)
+FIND_PACKAGE(SharemindLibModapi REQUIRED)
 FIND_PACKAGE(SharemindPdkHeaders REQUIRED)
 INCLUDE_DIRECTORIES(
     ${Boost_INCLUDE_DIRS}
@@ -48,7 +48,7 @@ INCLUDE_DIRECTORIES(
     ${SharemindLibEmulatorProtocols_INCLUDE_DIRS}
     ${SharemindLibExecutionModelEvaluator_INCLUDE_DIRS}
     ${SharemindLibExecutionProfiler_INCLUDE_DIRS}
-    ${SharemindLibmodapi_INCLUDE_DIRS}
+    ${SharemindLibModapi_INCLUDE_DIRS}
     ${SharemindPdkHeaders_INCLUDE_DIRS}
 )
 
@@ -59,7 +59,7 @@ ADD_DEFINITIONS(
     ${SharemindLibEmulatorProtocols_DEFINITIONS}
     ${SharemindLibExecutionModelEvaluator_DEFINITIONS}
     ${SharemindLibExecutionProfiler_DEFINITIONS}
-    ${SharemindLibmodapi_DEFINITIONS}
+    ${SharemindLibModapi_DEFINITIONS}
     ${SharemindPdkHeaders_DEFINITIONS}
     "-Dexprtk_disable_comments"
     "-Dexprtk_disable_break_continue"
