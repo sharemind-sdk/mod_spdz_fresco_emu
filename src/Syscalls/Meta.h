@@ -20,8 +20,8 @@
 #ifndef MOD_SPDZ_FRESCO_EMU_SYSCALLS_META_H
 #define MOD_SPDZ_FRESCO_EMU_SYSCALLS_META_H
 
+#include <sharemind/module-apis/api_0x1.h>
 #include <sharemind/VmVector.h>
-#include <sharemind/libmodapi/api_0x1.h>
 
 #include "Common.h"
 #include "../SpdzFrescoPDPI.h"

@@ -20,7 +20,7 @@
 #ifndef MOD_SPDZ_FRESCO_EMU_SYSCALLS_CORESYSCALLS_H
 #define MOD_SPDZ_FRESCO_EMU_SYSCALLS_CORESYSCALLS_H
 
-#include <sharemind/libmodapi/api_0x1.h>
+#include <sharemind/module-apis/api_0x1.h>
 #include <sharemind/ShareVector.h>
 #include <sharemind/VmVector.h>
 #include "Common.h"
