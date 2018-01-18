@@ -37,12 +37,9 @@ class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoPD {
 
 public: /* Types: */
 
-    SHAREMIND_DEFINE_EXCEPTION(sharemind::Exception, Exception);
-
-    SHAREMIND_DEFINE_EXCEPTION_CONST_MSG(
-            Exception,
-            ConfigurationException,
-            "Error in protection domain configuration!");
+    SHAREMIND_DECLARE_EXCEPTION_NOINLINE(sharemind::Exception, Exception);
+    SHAREMIND_DECLARE_EXCEPTION_CONST_MSG_NOINLINE(Exception,
+                                                   ConfigurationException);
 
 public: /* Methods: */
 

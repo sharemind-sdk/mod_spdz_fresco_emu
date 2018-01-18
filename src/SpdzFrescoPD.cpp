@@ -25,6 +25,15 @@
 
 namespace sharemind {
 
+SHAREMIND_DEFINE_EXCEPTION_NOINLINE(sharemind::Exception,
+                                    SpdzFrescoPD::,
+                                    Exception);
+SHAREMIND_DEFINE_EXCEPTION_CONST_MSG_NOINLINE(
+        Exception,
+        SpdzFrescoPD::,
+        ConfigurationException,
+        "Error in protection domain configuration!");
+
 SpdzFrescoPD::SpdzFrescoPD(const std::string & pdName,
                        const std::string & pdConfiguration,
                        SpdzFrescoModule & module)
