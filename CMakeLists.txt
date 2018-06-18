@@ -120,7 +120,7 @@ SharemindAddComponentPackage("debug"
     DESCRIPTION "Sharemind SPDZ Fresco emulation module debug symbols"
     DEB_SECTION "debug"
     DEB_DEPENDS
-        "libsharemind-mod-spdz-fresco-emu (= ${SharemindModSpdzFrescoEmu_VERSION})"
+        "libsharemind-mod-spdz-fresco-emu (= ${SharemindModSpdzFrescoEmu_DEB_lib_PACKAGE_VERSION})"
 )
 IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
     SharemindAddComponentPackage("debugconf"
@@ -128,7 +128,7 @@ IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
         DESCRIPTION "Sharemind SPDZ Fresco emulation module debug configuration"
         DEB_SECTION "debug"
         DEB_DEPENDS
-            "libsharemind-mod-spdz-fresco-emu (= ${SharemindModSpdzFrescoEmu_VERSION})"
+            "libsharemind-mod-spdz-fresco-emu (= ${SharemindModSpdzFrescoEmu_DEB_lib_PACKAGE_VERSION})"
     )
 ENDIF()
 SharemindPackagingFinalize()
