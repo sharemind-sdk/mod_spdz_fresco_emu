@@ -36,7 +36,7 @@ FIND_PACKAGE(SharemindLibEmulatorProtocols REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionModelEvaluator 0.2.0 REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionProfiler 0.2.0 REQUIRED)
 FIND_PACKAGE(SharemindModuleApis 1.0.0 REQUIRED)
-FIND_PACKAGE(SharemindPdkHeaders REQUIRED)
+FIND_PACKAGE(SharemindPdkHeaders 0.2.0 REQUIRED)
 
 
 SharemindSetCxx11CompileOptions()
