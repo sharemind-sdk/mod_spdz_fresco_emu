@@ -29,7 +29,7 @@ SharemindSetProjectVersion()
 
 
 FIND_PACKAGE(Boost REQUIRED)
-FIND_PACKAGE(LogHard REQUIRED)
+FIND_PACKAGE(LogHard 0.3.0 REQUIRED)
 FIND_PACKAGE(SharemindCHeaders 1.1.0 REQUIRED)
 FIND_PACKAGE(SharemindCxxHeaders 0.4.0 REQUIRED)
 FIND_PACKAGE(SharemindLibEmulatorProtocols REQUIRED)
@@ -109,7 +109,7 @@ SharemindAddComponentPackage("lib"
     DEB_SECTION "libs"
     DEB_DEPENDS
         "libcrypto++6"
-        "libloghard (>= 0.1.0)"
+        "libloghard (>= 0.3.0)"
         "libsharemind-executionmodelevaluator (>= 0.1.0)"
         "libsharemind-executionprofiler (>= 0.1.0)"
         "libstdc++6 (>= 4.8.0)"
