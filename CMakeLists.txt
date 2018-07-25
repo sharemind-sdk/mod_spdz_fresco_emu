@@ -23,9 +23,7 @@ PROJECT(SharemindModSpdzFrescoEmu VERSION 1.1.1 LANGUAGES CXX)
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
 
-FIND_PACKAGE(SharemindCMakeHelpers 1.2 REQUIRED)
-
-SharemindSetProjectVersion()
+FIND_PACKAGE(SharemindCMakeHelpers 1.3 REQUIRED)
 
 
 FIND_PACKAGE(Boost REQUIRED)
