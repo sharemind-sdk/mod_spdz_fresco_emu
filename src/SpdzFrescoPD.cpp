@@ -18,7 +18,6 @@
  */
 
 #include <sharemind/ExecutionModelEvaluator.h>
-#include <sharemind/ExecutionProfiler.h>
 #include "SpdzFrescoModule.h"
 #include "SpdzFrescoPD.h"
 
@@ -39,7 +38,6 @@ SpdzFrescoPD::SpdzFrescoPD(const std::string & pdName,
                        SpdzFrescoModule & module)
     : m_configuration(module.logger())
     , m_name(pdName)
-    , m_profiler(module.profiler())
 {
     if (!m_configuration.load(pdConfiguration))
         throw ConfigurationException();

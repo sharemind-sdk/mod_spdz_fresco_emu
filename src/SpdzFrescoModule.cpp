@@ -18,16 +18,13 @@
  */
 
 #include <LogHard/Logger.h>
-#include <sharemind/ExecutionProfiler.h>
 #include "SpdzFrescoModule.h"
 
 
 namespace sharemind {
 
-SpdzFrescoModule::SpdzFrescoModule(const LogHard::Logger & logger,
-                               ExecutionProfiler & profiler)
+SpdzFrescoModule::SpdzFrescoModule(const LogHard::Logger & logger)
     : m_logger(logger)
-    , m_profiler(profiler)
 { }
 
 } /* namespace sharemind { */

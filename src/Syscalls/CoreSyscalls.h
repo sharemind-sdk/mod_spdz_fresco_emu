@@ -68,7 +68,7 @@ NAMED_SYSCALL(new_vec, name, args, num_args, refs, crefs, returnValue, c)
 
         returnValue->p[0u] = vec;
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name, vsize);
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name, vsize);
 
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (...) {
@@ -108,7 +108,7 @@ NAMED_SYSCALL(init_vec, name, args, num_args, refs, crefs, returnValue, c)
         for (size_t i = 0u; i < vec.size(); ++i)
             vec[i] = init;
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name,
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name,
                         vec.size());
 
         return SHAREMIND_MODULE_API_0x1_OK;
@@ -165,7 +165,7 @@ NAMED_SYSCALL(set_shares, name, args, num_args, refs, crefs, returnValue, c)
         if (returnValue)
             returnValue->uint64[0u] = num_elems;
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name,
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name,
                         num_elems);
 
         return SHAREMIND_MODULE_API_0x1_OK;
@@ -222,7 +222,7 @@ NAMED_SYSCALL(get_shares, name, args, num_args, refs, crefs, returnValue, c)
         if (returnValue)
             returnValue->uint64[0u] = num_bytes;
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name,
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name,
                         src.size());
 
         return SHAREMIND_MODULE_API_0x1_OK;
@@ -263,7 +263,7 @@ NAMED_SYSCALL(get_type_size, name, args, num_args, refs, crefs, returnValue, c)
         typedef typename ValueTraits<T>::share_type share_type;
         returnValue->uint64[0u] = sizeof(share_type);
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name, 0u);
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name, 0u);
 
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (...) {
@@ -308,7 +308,7 @@ NAMED_SYSCALL(fill_vec, name, args, num_args, refs, crefs, returnValue, c)
         for (size_t i = 0; i < dest.size(); ++i)
             dest[i] = src[0u];
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name,
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name,
                         dest.size());
 
         return SHAREMIND_MODULE_API_0x1_OK;
@@ -359,7 +359,7 @@ NAMED_SYSCALL(assign_vec, name, args, num_args, refs, crefs, returnValue, c)
 
         dest.assign(src);
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name,
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name,
                         dest.size());
 
         return SHAREMIND_MODULE_API_0x1_OK;
@@ -407,7 +407,7 @@ NAMED_SYSCALL(declassify_vec, name, args, num_args, refs, crefs, returnValue, c)
         for (size_t i = 0u; i < src.size(); ++i)
             dest[i] = src[i];
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name,
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name,
                         src.size());
 
         return SHAREMIND_MODULE_API_0x1_OK;
@@ -455,7 +455,7 @@ NAMED_SYSCALL(classify_vec, name, args, num_args, refs, crefs, returnValue, c)
         for (size_t i = 0u; i < dest.size(); ++i)
             dest[i] = src[i];
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name,
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name,
                         src.size());
 
         return SHAREMIND_MODULE_API_0x1_OK;
@@ -497,7 +497,7 @@ NAMED_SYSCALL(delete_vec, name, args, num_args, refs, crefs, returnValue, c)
         const size_t vsize = vec->size();
         pdpi->freeRegisteredVector(vec);
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name, vsize);
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name, vsize);
 
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (...) {
@@ -551,7 +551,7 @@ NAMED_SYSCALL(load_vec, name, args, num_args, refs, crefs, returnValue, c)
 
         dest[0u] = src[index];
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name, 1u);
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name, 1u);
 
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (...) {
@@ -605,7 +605,7 @@ NAMED_SYSCALL(store_vec, name, args, num_args, refs, crefs, returnValue, c)
 
         dest[index] = src[0u];
 
-        PROFILE_SYSCALL(pdpi->profiler(), pdpi->modelEvaluator(), name, 1u);
+        PROFILE_SYSCALL(c, pdpi->modelEvaluator(), name, 1u);
 
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (...) {

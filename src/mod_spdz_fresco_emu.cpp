@@ -19,7 +19,6 @@
 
 #include <cassert>
 #include <LogHard/Logger.h>
-#include <sharemind/ExecutionProfiler.h>
 #include <sharemind/libemulator_protocols/Binary.h>
 #include <sharemind/libemulator_protocols/Nullary.h>
 #include <sharemind/libemulator_protocols/Ternary.h>
@@ -83,23 +82,14 @@ SHAREMIND_MODULE_API_0x1_INITIALIZER(c) {
     if (!flogger || !flogger->facility)
         return SHAREMIND_MODULE_API_0x1_MISSING_FACILITY;
 
-    const SharemindModuleApi0x1Facility * const fprofiler =
-            c->getModuleFacility(c, "Profiler");
-
-    if (!fprofiler || !fprofiler->facility)
-        return SHAREMIND_MODULE_API_0x1_MISSING_FACILITY;
-
     const LogHard::Logger & logger =
         *static_cast<LogHard::Logger *>(flogger->facility);
-
-    sharemind::ExecutionProfiler & profiler =
-        *static_cast<sharemind::ExecutionProfiler *>(fprofiler->facility);
 
     /*
      Initialize the module handle
     */
     try {
-        c->moduleHandle = new sharemind::SpdzFrescoModule(logger, profiler);
+        c->moduleHandle = new sharemind::SpdzFrescoModule(logger);
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (...) {
         return catchModuleApiErrors ();

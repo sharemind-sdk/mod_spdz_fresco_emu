@@ -18,7 +18,6 @@
  */
 
 #include <sharemind/ExecutionModelEvaluator.h>
-#include <sharemind/ExecutionProfiler.h>
 #include "SpdzFrescoPDPI.h"
 
 
@@ -28,7 +27,6 @@ SpdzFrescoPDPI::SpdzFrescoPDPI(SpdzFrescoPD & pd)
     : m_pd(pd)
     , m_pdConfiguration(pd.configuration())
     , m_modelEvaluator(pd.modelEvaluator())
-    , m_profiler(pd.profiler())
 {}
 
 } /* namespace sharemind { */

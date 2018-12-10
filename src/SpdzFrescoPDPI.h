@@ -28,7 +28,6 @@
 namespace sharemind {
 
 class ExecutionModelEvaluator;
-class ExecutionProfiler;
 class SpdzFrescoConfiguration;
 
 class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoPDPI {
@@ -50,12 +49,6 @@ public: /* Methods: */
     inline const ExecutionModelEvaluator & modelEvaluator() const noexcept
     { return m_modelEvaluator; }
 
-    inline ExecutionProfiler & profiler() noexcept
-    { return m_profiler; }
-
-    inline const ExecutionProfiler & profiler() const noexcept
-    { return m_profiler; }
-
     template <typename T>
     inline bool isValidHandle(void * hndl) const {
         return m_heap.check<T>(hndl);
@@ -75,10 +68,7 @@ private: /* Fields: */
 
     SpdzFrescoPD & m_pd;
     SpdzFrescoConfiguration & m_pdConfiguration;
-
     ExecutionModelEvaluator & m_modelEvaluator;
-    ExecutionProfiler & m_profiler;
-
     SharedValueHeap m_heap;
 
 }; /* class SpdzFrescoPDPI { */

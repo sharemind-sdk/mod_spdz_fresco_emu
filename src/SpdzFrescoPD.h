@@ -29,7 +29,6 @@
 
 namespace sharemind {
 
-class ExecutionProfiler;
 class ExecutionModelEvaluator;
 class SpdzFrescoModule;
 
@@ -60,12 +59,6 @@ public: /* Methods: */
     inline const ExecutionModelEvaluator & modelEvaluator() const noexcept
     { return *m_modelEvaluator; }
 
-    inline ExecutionProfiler & profiler() noexcept
-    { return m_profiler; }
-
-    inline const ExecutionProfiler & profiler() const noexcept
-    { return m_profiler; }
-
     inline const std::string & name() const noexcept
     { return m_name; }
 
@@ -73,8 +66,6 @@ private: /* Fields: */
 
     SpdzFrescoConfiguration m_configuration;
     std::string m_name;
-
-    ExecutionProfiler & m_profiler;
 
     std::unique_ptr<ExecutionModelEvaluator> m_modelEvaluator;
 

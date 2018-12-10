@@ -28,28 +28,18 @@ namespace LogHard { class Logger; }
 
 namespace sharemind {
 
-class ExecutionProfiler;
-
 class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoModule {
 
 public: /* Methods: */
 
-    SpdzFrescoModule(const LogHard::Logger & logger,
-                   ExecutionProfiler & m_profiler);
+    SpdzFrescoModule(const LogHard::Logger & logger);
 
     const LogHard::Logger & logger() const noexcept
     { return m_logger; }
 
-    inline ExecutionProfiler & profiler() noexcept
-    { return m_profiler; }
-
-    inline const ExecutionProfiler & profiler() const noexcept
-    { return m_profiler; }
-
 private:
 
     const LogHard::Logger & m_logger;
-    ExecutionProfiler & m_profiler;
 
 }; /* class SpdzFrescoModule { */
 
