@@ -91,16 +91,11 @@ SharemindAddSharedLibrary("sharemind_mod_spdz_fresco_emu"
         ${SharemindPdkHeaders_LIBRARIES}
 )
 
-FILE(GLOB_RECURSE SharemindModSpdzFrescoEmu_DEBUG_FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/debug_files/*.cfg")
-ADD_CUSTOM_TARGET("include_SharemindModSpdzFrescoEmu_DEBUG_FILES_in_IDE" SOURCES
-                  ${SharemindModSpdzFrescoEmu_DEBUG_FILES})
-IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
-    INSTALL(FILES ${SharemindModSpdzFrescoEmu_DEBUG_FILES}
-            DESTINATION "bin"
-            COMPONENT "debugconf")
-ENDIF()
-
+# Configuration files:
+INSTALL(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/packaging/configs/sharemind/"
+        DESTINATION "/etc/sharemind/"
+        COMPONENT "lib"
+        EXCLUDE_FROM_ALL)
 
 # Packaging:
 SharemindSetupPackaging()
@@ -115,6 +110,8 @@ SharemindAddComponentPackage("lib"
         "libsharemind-executionprofiler (>= 0.2.0)"
         "libstdc++6 (>= 4.8.0)"
         "libc6 (>= 2.19)"
+    DEB_EXTRA_CONTROL_FILES
+        "${CMAKE_CURRENT_SOURCE_DIR}/packaging/debian/conffiles"
 )
 SharemindAddComponentPackage("debug"
     NAME "libsharemind-mod-spdz-fresco-emu-dbg"
@@ -123,13 +120,4 @@ SharemindAddComponentPackage("debug"
     DEB_DEPENDS
         "libsharemind-mod-spdz-fresco-emu (= ${SharemindModSpdzFrescoEmu_DEB_lib_PACKAGE_VERSION})"
 )
-IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
-    SharemindAddComponentPackage("debugconf"
-        NAME "libsharemind-mod-spdz-fresco-emu-debugconfiguration"
-        DESCRIPTION "Sharemind SPDZ Fresco emulation module debug configuration"
-        DEB_SECTION "debug"
-        DEB_DEPENDS
-            "libsharemind-mod-spdz-fresco-emu (= ${SharemindModSpdzFrescoEmu_DEB_lib_PACKAGE_VERSION})"
-    )
-ENDIF()
 SharemindPackagingFinalize()
