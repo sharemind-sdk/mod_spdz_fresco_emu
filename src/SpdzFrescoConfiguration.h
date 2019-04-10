@@ -35,7 +35,7 @@ class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoConfiguration
 
 public: /* Methods: */
 
-    SpdzFrescoConfiguration( const std::string & conf);
+    SpdzFrescoConfiguration( const std::string & pdConf);
 
     const std::string & modelEvaluatorConfiguration() const noexcept
     { return m_modelEvaluatorConfiguration; }
