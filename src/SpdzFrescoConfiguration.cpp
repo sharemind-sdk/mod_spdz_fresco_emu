@@ -25,36 +25,10 @@
 
 namespace sharemind {
 
-SpdzFrescoConfiguration::SpdzFrescoConfiguration(const LogHard::Logger & logger)
-    : m_logger(logger)
+SpdzFrescoConfiguration::SpdzFrescoConfiguration(const std::string & pdConf)
+    : Configuration(pdConf)
+    , m_modelEvaluatorConfiguration(
+            get<std::string>("ProtectionDomain.ModelEvaluatorConfiguration"))
 {}
-
-bool SpdzFrescoConfiguration::load(const std::string & filename) {
-
-    using boost::property_tree::ptree;
-
-    ptree config;
-
-    try {
-        boost::property_tree::read_ini(filename, config);
-        m_modelEvaluatorConfiguration =
-            config.get<std::string>("ProtectionDomain.ModelEvaluatorConfiguration");
-    } catch (const boost::property_tree::ini_parser_error & e) {
-        m_logger.error() << "Error while parsing configuration file. "
-            << e.message() << " [" << e.filename() << ":"
-            << e.line() << "].";
-        return false;
-    } catch (const boost::property_tree::ptree_bad_data & e) {
-        m_logger.error() << "Error while parsing configuration file. Bad data: "
-            << e.what();
-        return false;
-    } catch (const boost::property_tree::ptree_bad_path & e) {
-        m_logger.error() << "Error while parsing configuration file. Bad path: "
-            << e.what();
-        return false;
-    }
-
-    return true;
-}
 
 } /* namespace sharemind { */

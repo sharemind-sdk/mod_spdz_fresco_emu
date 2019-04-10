@@ -30,6 +30,7 @@ FIND_PACKAGE(Boost REQUIRED)
 FIND_PACKAGE(LogHard 0.3.0 REQUIRED)
 FIND_PACKAGE(SharemindCHeaders 1.1.0 REQUIRED)
 FIND_PACKAGE(SharemindCxxHeaders 0.5.0 REQUIRED)
+FIND_PACKAGE(SharemindLibConfiguration 0.2.0 REQUIRED)
 FIND_PACKAGE(SharemindLibEmulatorProtocols 0.1.1 REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionModelEvaluator 0.2.0 REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionProfiler 0.2.0 REQUIRED)
@@ -60,6 +61,7 @@ SharemindAddSharedLibrary("sharemind_mod_spdz_fresco_emu"
         ${LogHard_INCLUDE_DIRS}
         ${SharemindCHeaders_INCLUDE_DIRS}
         ${SharemindCxxHeaders_INCLUDE_DIRS}
+        ${SharemindLibConfiguration_INCLUDE_DIRS}
         ${SharemindLibEmulatorProtocols_INCLUDE_DIRS}
         ${SharemindLibExecutionModelEvaluator_INCLUDE_DIRS}
         ${SharemindLibExecutionProfiler_INCLUDE_DIRS}
@@ -74,6 +76,7 @@ SharemindAddSharedLibrary("sharemind_mod_spdz_fresco_emu"
         ${LogHard_DEFINITIONS}
         ${SharemindCHeaders_DEFINITIONS}
         ${SharemindCxxHeaders_DEFINITIONS}
+        ${SharemindLibConfiguration_DEFINITIONS}
         ${SharemindLibEmulatorProtocols_DEFINITIONS}
         ${SharemindLibExecutionModelEvaluator_DEFINITIONS}
         ${SharemindLibExecutionProfiler_DEFINITIONS}
@@ -82,6 +85,7 @@ SharemindAddSharedLibrary("sharemind_mod_spdz_fresco_emu"
         ${LogHard_LIBRARIES}
         ${SharemindCHeaders_LIBRARIES}
         ${SharemindCxxHeaders_LIBRARIES}
+        ${SharemindLibConfiguration_LIBRARIES}
         ${SharemindLibExecutionModelEvaluator_LIBRARIES}
         ${SharemindLibExecutionProfiler_LIBRARIES}
         ${SharemindPdkHeaders_LIBRARIES}
@@ -106,6 +110,7 @@ SharemindAddComponentPackage("lib"
     DEB_SECTION "libs"
     DEB_DEPENDS
         "libloghard (>= 0.3.0)"
+        "libsharemind-configuration (>= 0.2.0)"
         "libsharemind-executionmodelevaluator (>= 0.2.0)"
         "libsharemind-executionprofiler (>= 0.2.0)"
         "libstdc++6 (>= 4.8.0)"

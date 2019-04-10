@@ -21,6 +21,7 @@
 #define MOD_SPDZ_FRESCO_EMU_SHARED3PCONFIGURATION_H
 
 #include <string>
+#include <sharemind/libconfiguration/Configuration.h>
 #include <sharemind/visibility.h>
 
 
@@ -28,21 +29,18 @@ namespace LogHard { class Logger; }
 
 namespace sharemind {
 
-class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoConfiguration {
+class SHAREMIND_VISIBILITY_INTERNAL SpdzFrescoConfiguration
+    : public sharemind::Configuration
+{
 
 public: /* Methods: */
 
-    SpdzFrescoConfiguration(const LogHard::Logger & logger);
-
-    bool load(const std::string & filename);
+    SpdzFrescoConfiguration( const std::string & conf);
 
     const std::string & modelEvaluatorConfiguration() const noexcept
     { return m_modelEvaluatorConfiguration; }
 
 private: /* Fields: */
-
-    const LogHard::Logger & m_logger;
-
     std::string m_modelEvaluatorConfiguration;
 
 }; /* class SpdzFrescoConfiguration { */

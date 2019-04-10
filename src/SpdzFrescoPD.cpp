@@ -36,12 +36,10 @@ SHAREMIND_DEFINE_EXCEPTION_CONST_MSG_NOINLINE(
 SpdzFrescoPD::SpdzFrescoPD(const std::string & pdName,
                        const std::string & pdConfiguration,
                        SpdzFrescoModule & module)
-    : m_configuration(module.logger())
+try
+    : m_configuration(pdConfiguration)
     , m_name(pdName)
 {
-    if (!m_configuration.load(pdConfiguration))
-        throw ConfigurationException();
-
     try {
         m_modelEvaluator.reset(
                 new ExecutionModelEvaluator(module.logger(),
@@ -49,6 +47,8 @@ SpdzFrescoPD::SpdzFrescoPD(const std::string & pdName,
     } catch (const ExecutionModelEvaluator::ConfigurationException &) {
         throw ConfigurationException();
     }
+} catch (const Configuration::Exception &) {
+    std::throw_with_nested(ConfigurationException());
 }
 
 SpdzFrescoPD::~SpdzFrescoPD() noexcept = default;
