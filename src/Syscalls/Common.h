@@ -86,7 +86,7 @@ inline uint64_t getStack<sf_uint64_t>(const SharemindCodeBlock & arg)
 #ifdef SHAREMIND_NETWORK_STATISTICS_ENABLE
 #define PROFILE_SYSCALL(ctx,evaluator,name,parameter) \
     do { \
-        if (auto * const profiler = *static_cast<ExecutionProfiler *>( \
+        if (auto * const profiler = static_cast<ExecutionProfiler *>( \
                 ctx->processFacility(ctx, "Profiler"))) \
         { \
             static const uint32_t sectionTypeId = \
@@ -103,7 +103,7 @@ inline uint64_t getStack<sf_uint64_t>(const SharemindCodeBlock & arg)
 #else
 #define PROFILE_SYSCALL(ctx,evaluator,name,parameter) \
     do { \
-        if (auto * const profiler = *static_cast<ExecutionProfiler *>( \
+        if (auto * const profiler = static_cast<ExecutionProfiler *>( \
                 ctx->processFacility(ctx, "Profiler"))) \
         { \
             static const uint32_t sectionTypeId = \
