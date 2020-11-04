@@ -69,9 +69,6 @@ SharemindAddSharedLibrary("sharemind_mod_spdz_fresco_emu"
         ${SharemindPdkHeaders_INCLUDE_DIRS}
     COMPILE_DEFINITIONS
         ${SharemindModSpdzFrescoEmu_EXTRA_DEFINITIONS}
-        "exprtk_disable_comments"
-        "exprtk_disable_break_continue"
-        "exprtk_disable_enhanced_features"
     LEGACY_DEFINITIONS
         ${LogHard_DEFINITIONS}
         ${SharemindCHeaders_DEFINITIONS}
