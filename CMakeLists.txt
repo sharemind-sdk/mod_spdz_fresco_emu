@@ -34,7 +34,7 @@ FIND_PACKAGE(SharemindLibEmulatorProtocols 0.2.0 REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionModelEvaluator 0.4.0 REQUIRED)
 FIND_PACKAGE(SharemindLibExecutionProfiler 0.5.0 REQUIRED)
 FIND_PACKAGE(SharemindModuleApis 1.1.0 REQUIRED)
-FIND_PACKAGE(SharemindPdkHeaders 0.5.0 REQUIRED)
+FIND_PACKAGE(SharemindPdkHeaders 0.6.0 REQUIRED)
 
 
 FILE(GLOB_RECURSE SharemindModSpdzFrescoEmu_SOURCES
